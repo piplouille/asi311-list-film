@@ -7,7 +7,6 @@ import { Realisateur } from '../models/realisateur';
   providedIn: 'root'
 })
 export class RealisateurService {
-  private realisateurs: Realisateur;
   SERVER_URL = 'http://localhost:8080/';
 
   constructor(private http: HttpClient) { }

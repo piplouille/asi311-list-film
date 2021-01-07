@@ -4,4 +4,5 @@ export class Film {
     realisateur: number;
     nomRealisateur: String;
     titre: String;
+    genre: number;
 }

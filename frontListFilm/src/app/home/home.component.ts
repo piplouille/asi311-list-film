@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Film } from '../models/film';
+import { Genre } from '../models/genre';
 import { FilmService } from '../services/film.service';
+import { GenreService } from '../services/genre.service';
 
 @Component({
   selector: 'app-home',
@@ -12,8 +14,9 @@ export class HomeComponent implements OnInit {
   film: Film;
   total: number;
   film_id: number;
+  genre: Genre;
 
-  constructor(private filmService: FilmService) { }
+  constructor(private filmService: FilmService, private genreService:GenreService) { }
   
   ngOnInit(): void {
     this.getFilms();
