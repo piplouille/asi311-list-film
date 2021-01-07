@@ -1,0 +1,26 @@
+https://www.baeldung.com/maven-java-home-jdk-jre
+
+model : représente les objets stockés dans les tables de la bdd
+BDD <-> model <-> java
+
+dao : couche d'accès aux données de notre application web, renvoie un pojo
+
+pojo : représentation côté java des élem bdd
+
+mapper :
+dto :
+service :
+
+spring appelle dao dans service
+
+controller : swagger, gère les url : mapping
+ca gere des dto
+
+Question 1
+- faire service avec entrée
+- teste sur swagger
+- on descend
+
+
+Quand on ajoute un film : on ne spécifie que l'id du realisateur
+Les infos seront récupérées dans la requête get

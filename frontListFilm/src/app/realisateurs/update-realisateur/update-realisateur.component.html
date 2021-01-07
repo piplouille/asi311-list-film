@@ -1,0 +1,42 @@
+<h1 class="display-3">Modifier {{realisateur.prenom}} {{realisateur.nom}}</h1>
+
+<div *ngIf="realUpForm.submitted" class="alert alert-info">
+    Réalisateur modifié !
+</div>
+
+<form #realUpForm="ngForm" (ngSubmit)="processForm(realUpForm)">
+    <input type="hidden" ngModel name="id" [(ngModel)]="realisateur.id">
+
+    <div class="form-group">
+        <label for="nom">Nom</label>
+        <input class="form-control" type="text" name="nom" #nom="ngModel" required ngModel [(ngModel)]="realisateur.nom">
+        <div *ngIf="nom.invalid && (nom.touched || nom.dirty)">
+            <div *ngIf="nom.errors.required" class="alert alert-danger">
+                Le nom est nécessaire.
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="prenom">Prénom</label>
+        <input class="form-control" type="text" name="prenom" #prenom="ngModel" required ngModel [(ngModel)]="realisateur.prenom">
+        <div *ngIf="prenom.invalid && (prenom.touched || prenom.dirty)">
+            <div *ngIf="prenom.errors.required" class="alert alert-danger">
+                Le prénom est nécessaire.
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="naissance">Date de naissance</label>
+        <input class="form-control" type="text" name="naissance" #naissance="ngModel" required ngModel [(ngModel)]="realisateur.naissance">
+        <div *ngIf="naissance.invalid && (naissance.touched || naissance.dirty)">
+            <div *ngIf="naissance.errors.required" class="alert alert-danger">
+                La date de naissance est nécessaire.
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-sm btn-outline-primary" type="submit" [disabled]="realUpForm.invalid">Modifier le réalisateur !</button>
+
+</form>

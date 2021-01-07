@@ -1,0 +1,24 @@
+<div class="card mb-4 shadow-sm">
+    <div class="card-body">
+        <h5 class="card-title">{{film.titre}} - <i>{{film.nomRealisateur}}</i></h5>
+        <small class="text-muted">Durée : {{film.duration}} minutes</small>
+        <br><br>
+        <div style="text-align:center;">
+        <img class="img-fluid img-thumbnail" src="https://picsum.photos/seed/{{film.titre}}/200/300">
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div style="text-align: center;" class="col-sm">
+                    <a class="btn btn-sl btn-outline-primary" [routerLink]="['/films/'+film.id]">Details</a>
+                </div>
+                <div style="text-align: center;" class="col-sm">
+                    <a class="btn btn-sm btn-outline-secondary" [routerLink]="['update/'+film.id]">Modifier</a>
+                </div>
+                <div style="text-align: center;" class="col-sm">
+                    <a style="float:right" class="btn btn-sm btn-outline-danger" (click)="deleteFilm()">Supprimer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

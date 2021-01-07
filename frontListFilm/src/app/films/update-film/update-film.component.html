@@ -1,0 +1,51 @@
+<h1 class="display-3">Modifier {{film.titre}}</h1>
+
+<div *ngIf="filmUpForm.submitted" class="alert alert-info">
+    Film modifié !
+</div>
+
+<form #filmUpForm="ngForm" (ngSubmit)="processForm(filmUpForm)">
+    <input type="hidden" ngModel name="id" [(ngModel)]="film.id">
+
+    <div class="form-group">
+        <label for="titre">Titre</label>
+        <input class="form-control" type="text" name="titre" #titre="ngModel" required ngModel [(ngModel)]="film.titre">
+        <div *ngIf="titre.invalid && (titre.touched || titre.dirty)">
+            <div *ngIf="titre.errors.required" class="alert alert-danger">
+                Le titre est nécessaire.
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="realisateur">Realisateur</label>
+
+        <select class="form-control" type="string" name="realisateur"
+        #realisateur="ngModel"
+        required
+        ngModel [(ngModel)]="film.realisateur">
+            <option *ngFor="let realisateur of realisateurs" value={{realisateur.id}}>{{realisateur.prenom}} {{realisateur.nom}}</option>
+        </select>
+
+        <div *ngIf="realisateur.invalid && (realisateur.touched || realisateur.dirty)">
+            <div *ngIf="realisateur.errors.required" class="alert alert-danger">
+                Un réalisateur est nécessaire.
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="duration">Durée</label>
+        <input class="form-control" type="number" name="duration" min="0"
+        #duration = "ngModel"
+        required
+        ngModel [(ngModel)]="film.duration">
+        <div *ngIf="duration.invalid && (duration.touched || duration.dirty)">
+            <div *ngIf="duration.errors.required" class="alert alert-danger">
+                Une durée est nécessaire.
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-sm btn-outline-secondary" type="submit" [disabled]="filmUpForm.invalid">Modifier le film !</button>
+</form>

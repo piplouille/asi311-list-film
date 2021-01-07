@@ -1,0 +1,51 @@
+<h1 class="display-3">Ajouter un film</h1>
+
+<div *ngIf="filmForm.submitted" class="alert alert-info">
+    Film créé !
+</div>
+
+<form #filmForm="ngForm" (ngSubmit)="processForm(filmForm)">
+    <input type="hidden" ngModel name="id">
+
+    <div class="form-group">
+        <label for="titre">Titre</label>
+        <input class="form-control" type="text" name="titre" #titre="ngModel" required ngModel>
+        <div *ngIf="titre.invalid && (titre.touched || titre.dirty)">
+            <div *ngIf="titre.errors.required" class="alert alert-danger">
+                Le titre est nécessaire.
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="realisateur">Realisateur</label>
+
+        <select class="form-control" type="string" name="realisateur"
+        #realisateur="ngModel"
+        required
+        ngModel>
+            <option *ngFor="let realisateur of realisateurs" value={{realisateur.id}}>{{realisateur.prenom}} {{realisateur.nom}}</option>
+        </select>
+
+        <div *ngIf="realisateur.invalid && (realisateur.touched || realisateur.dirty)">
+            <div *ngIf="realisateur.errors.required" class="alert alert-danger">
+                Un réalisateur est nécessaire.
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="duration">Durée</label>
+        <input class="form-control" type="number" name="duration" 
+        #duration = "ngModel"
+        required
+        ngModel>
+        <div *ngIf="duration.invalid && (duration.touched || duration.dirty)">
+            <div *ngIf="duration.errors.required" class="alert alert-danger">
+                Une durée est nécessaire.
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-sm btn-outline-secondary" type="submit" [disabled]="filmForm.invalid">Créer le film !</button>
+</form>

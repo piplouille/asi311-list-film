@@ -1,0 +1,9 @@
+<h1 class="display-3">Films</h1>
+<div *ngFor="let film of films">
+    <app-film [film]="film"></app-film>
+</div>
+<div style="text-align:center;">
+<button *ngFor="let i of no_pages; let iteration = index" type="button" class="btn btn-light" (click)="changePage(iteration + 1)">
+    {{iteration + 1}}
+</button>
+</div>
