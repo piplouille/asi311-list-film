@@ -8,7 +8,6 @@ import com.ensta.myfilmlist.model.Realisateur;
 import com.ensta.myfilmlist.pojo.RealisateurPojo;
 
 public class RealisateurMapper {
-
     public static RealisateurDTO realisateurToRealisateurDTO(Realisateur realisateur){
         return new RealisateurDTO(realisateur.getId(), realisateur.getPrenom(), realisateur.getNom(), realisateur.getNaissance());
     }

@@ -10,7 +10,7 @@ import com.ensta.myfilmlist.pojo.FilmPojo;
 public class FilmMapper {
 
     public static FilmDTO filmToFilmDTO(Film film, String nom_realisateur){
-        return new FilmDTO(film.getId(),film.getTitre(), film.getDuration(), film.getRealisateur(), nom_realisateur);
+        return new FilmDTO(film.getId(),film.getTitre(), film.getDuration(), film.getRealisateur(), nom_realisateur, film.getGenre());
     }
 
     public static List<FilmDTO> listFilmToListFilmDTO(List<Film> listFilm){
@@ -22,7 +22,7 @@ public class FilmMapper {
     }
 
     public static Film filmPojoToFilm(FilmPojo film){
-        return new Film(film.getId(),film.getTitre(), film.getDuration(), film.getRealisateur(), film.getNomRealisateur());
+        return new Film(film.getId(),film.getTitre(), film.getDuration(), film.getRealisateur(), film.getNomRealisateur(), film.getGenre());
     }
 
     public static List<Film> listFilmPojoToListFilm(List<FilmPojo> listFilm){
@@ -34,10 +34,10 @@ public class FilmMapper {
     }
 
     public static Film filmDTOToFilm(FilmDTO film, String nom_realisateur) {
-        return new Film(film.getId(), film.getTitre(), film.getDuration(), film.getRealisateur(), nom_realisateur);
+        return new Film(film.getId(), film.getTitre(), film.getDuration(), film.getRealisateur(), nom_realisateur, film.getGenre());
     }
 
     public static FilmPojo filmFilmToPojo(Film film) {
-        return new FilmPojo(film.getId(), film.getTitre(), film.getDuration(), film.getRealisateur(), film.getNomRealisateur());
+        return new FilmPojo(film.getId(), film.getTitre(), film.getDuration(), film.getRealisateur(), film.getNomRealisateur(), film.getGenre());
     }
 }

@@ -16,13 +16,13 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class FilmDAO {
-	private static final String FIND_FILMS_QUERY = "SELECT id, titre, duration, id_realisateur FROM Film;";
-	private static final String FIND_FILMS_QUERY_PAGE = "SELECT id, titre, duration, id_realisateur FROM Film LIMIT 5 OFFSET ?;";
-	private static final String CREATE_FILMS_QUERY = "INSERT INTO Film(titre, duration, id_realisateur) VALUES(?, ?, ?);";
-	private static final String FIND_BY_ID_FILMS_QUERY = "SELECT titre, duration, id_realisateur FROM Film WHERE id = ?;";
-	private static final String UPDATE_FILMS_QUERY = "UPDATE Film SET titre = ?, duration = ?, id_realisateur = ? WHERE id = ?;";
+	private static final String FIND_FILMS_QUERY = "SELECT id, titre, duration, id_realisateur, id_genre FROM Film;";
+	private static final String FIND_FILMS_QUERY_PAGE = "SELECT id, titre, duration, id_realisateur, id_genre FROM Film LIMIT 5 OFFSET ?;";
+	private static final String CREATE_FILMS_QUERY = "INSERT INTO Film(titre, duration, id_realisateur, id_genre) VALUES(?, ?, ?, ?);";
+	private static final String FIND_BY_ID_FILMS_QUERY = "SELECT titre, duration, id_realisateur, id_genre FROM Film WHERE id = ?;";
+	private static final String UPDATE_FILMS_QUERY = "UPDATE Film SET titre = ?, duration = ?, id_realisateur = ?, id_genre = ? WHERE id = ?;";
 	private static final String DELETE_FILMS_QUERY = "DELETE Film WHERE id = ?;";
-	private static final String FIND_BY_REAL_ID_FILMS_QUERY = "SELECT id, titre, duration, id_realisateur FROM Film WHERE id_realisateur = ?;";
+	private static final String FIND_BY_REAL_ID_FILMS_QUERY = "SELECT id, titre, duration, id_realisateur, id_genre FROM Film WHERE id_realisateur = ?;";
 
 	/**
 	 * @arguments none
@@ -37,7 +37,7 @@ public class FilmDAO {
 
 			while (resultSet.next()) {
 
-				FilmPojo film = new FilmPojo(resultSet.getLong(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getLong(4), "");
+				FilmPojo film = new FilmPojo(resultSet.getLong(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getLong(4), "", resultSet.getLong(5));
 
 				resultList.add(film);
 			}
@@ -57,7 +57,7 @@ public class FilmDAO {
 
 			while (resultSet.next()) {
 
-				FilmPojo film = new FilmPojo(resultSet.getLong(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getLong(4), "");
+				FilmPojo film = new FilmPojo(resultSet.getLong(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getLong(4), "", resultSet.getLong(5));
 
 				resultList.add(film);
 			}
@@ -78,7 +78,7 @@ public class FilmDAO {
 			statement.setLong(1, id);
 			ResultSet resultSet = statement.executeQuery();
 			resultSet.next();
-			result = new FilmPojo(id, resultSet.getString(1), resultSet.getInt(2), resultSet.getLong(3), "");
+			result = new FilmPojo(id, resultSet.getString(1), resultSet.getInt(2), resultSet.getLong(3), "", resultSet.getLong(4));
 			return result;
 		} catch (SQLException e) {
 			throw new DaoException("Erreur lors du SELECT by ID : " + e.getMessage());
@@ -96,7 +96,7 @@ public class FilmDAO {
 			ResultSet resultSet = statement.executeQuery();
 
 			while (resultSet.next()) {
-				FilmPojo film = new FilmPojo(resultSet.getLong(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getLong(4), "");
+				FilmPojo film = new FilmPojo(resultSet.getLong(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getLong(4), "", resultSet.getLong(5));
 				resultList.add(film);
 			}
 		return resultList;
@@ -115,6 +115,7 @@ public class FilmDAO {
 			statement.setString(1, film.getTitre());
 			statement.setInt(2, film.getDuration());
 			statement.setLong(3, film.getRealisateur());
+			statement.setLong(4, film.getGenre());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new DaoException("Erreur lors du INSERT : " + e.getMessage());
@@ -130,7 +131,8 @@ public class FilmDAO {
 			statement.setString(1, film.getTitre());
 			statement.setInt(2, film.getDuration());
 			statement.setLong(3, film.getRealisateur());
-			statement.setLong(4, film.getId());
+			statement.setLong(4, film.getGenre());
+			statement.setLong(5, film.getId());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new DaoException("Erreur lors du UPDATE : " + e.getMessage());

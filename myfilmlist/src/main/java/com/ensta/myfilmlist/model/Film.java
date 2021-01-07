@@ -9,6 +9,7 @@ public class Film {
     private int duration;
     private long id_realisateur;
     private String nom_realisateur;
+    private long id_genre;
 
     public String getTitre() {
         return titre;
@@ -50,19 +51,29 @@ public class Film {
         this.nom_realisateur = nom_realisateur;
     }
 
-    public Film(String titre, int duration, long id_realisateur, String nom_realisateur) {
+    public long getGenre() {
+        return id_genre;
+    }
+
+    public void setGenre(long id_genre) {
+        this.id_genre = id_genre;
+    }
+
+    public Film(String titre, int duration, long id_realisateur, String nom_realisateur, long id_genre) {
         this.titre = titre;
         this.duration = duration;
         this.id_realisateur = id_realisateur;
         this.nom_realisateur = nom_realisateur;
+        this.id_genre = id_genre;
     }
 
-    public Film(long id, String titre, int duration, long id_realisateur, String nom_realisateur) {
+    public Film(long id, String titre, int duration, long id_realisateur, String nom_realisateur, long id_genre) {
         this.id = id;
         this.titre = titre;
         this.duration = duration;
         this.id_realisateur = id_realisateur;
         this.nom_realisateur = nom_realisateur;
+        this.id_genre = id_genre;
     }
 
     @Override
@@ -73,9 +84,5 @@ public class Film {
     @Override
     public boolean equals(Object o) {
         return EqualsBuilder.reflectionEquals(this, o);
-    }
-
-    
-
-    
+    }    
 }

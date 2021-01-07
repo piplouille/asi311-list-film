@@ -9,6 +9,7 @@ public class FilmPojo {
     private int duration;
     private long id_realisateur;
     private String nom_realisateur;
+    private long id_genre;
 
     public String getTitre() {
         return titre;
@@ -50,19 +51,29 @@ public class FilmPojo {
         this.nom_realisateur = nom_realisateur;
     }
 
-    public FilmPojo(String titre, int duration, long id_realisateur, String nom_realisateur) {
+    public long getGenre() {
+        return id_genre;
+    }
+
+    public void setGenre(long id_genre) {
+        this.id_genre = id_genre;
+    }
+
+    public FilmPojo(String titre, int duration, long id_realisateur, String nom_realisateur, long id_genre) {
         this.titre = titre;
         this.duration = duration;
         this.id_realisateur = id_realisateur;
         this.nom_realisateur = nom_realisateur;
+        this.id_genre = id_genre;
     }
 
-    public FilmPojo(long id, String titre, int duration, long id_realisateur, String nom_realisateur) {
+    public FilmPojo(long id, String titre, int duration, long id_realisateur, String nom_realisateur, long id_genre) {
         this.id = id;
         this.titre = titre;
         this.duration = duration;
         this.id_realisateur = id_realisateur;
         this.nom_realisateur = nom_realisateur;
+        this.id_genre = id_genre;
     }
 
     @Override
@@ -74,5 +85,4 @@ public class FilmPojo {
     public boolean equals(Object o) {
         return EqualsBuilder.reflectionEquals(this, o);
     }
-
 }
