@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Film } from 'src/app/models/film';
+import { Genre } from 'src/app/models/genre';
 import { Realisateur } from 'src/app/models/realisateur';
 import { FilmService } from 'src/app/services/film.service';
+import { GenreService } from 'src/app/services/genre.service';
 import { RealisateurService } from 'src/app/services/realisateur.service';
 
 @Component({
@@ -15,9 +17,10 @@ export class UpdateFilmComponent implements OnInit {
   film_id: number;
   film: Film;
   realisateurs: Realisateur[];
+  genres: Genre[];
   routeSub: Subscription;
 
-  constructor(private realisateurService:RealisateurService, private filmService:FilmService, private activatedRoute:ActivatedRoute) { }
+  constructor(private realisateurService:RealisateurService, private filmService:FilmService, private genreService:GenreService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit() {
     this.routeSub = this.activatedRoute
@@ -32,6 +35,7 @@ export class UpdateFilmComponent implements OnInit {
     })
     
     this.getRealisateurs();
+    this.getGenres();
   }
 
   getRealisateurs() {
@@ -39,6 +43,13 @@ export class UpdateFilmComponent implements OnInit {
       this.realisateurs = realisateurs;
     })
   }
+  getGenres() {
+    this.genreService.getGenres()
+      .subscribe((genres:Genre[]) => {
+        this.genres = genres;
+      })
+  }
+
 
   processForm(form) {
     if (form.invalid) {

@@ -35,6 +35,23 @@
     </div>
 
     <div class="form-group">
+        <label for="genre">Genre</label>
+
+        <select class="form-control" type="string" name="genre"
+        #genre="ngModel"
+        required
+        ngModel [(ngModel)]="film.genre">
+            <option *ngFor="let genre of genres" value={{genre.id}}>{{genre.genre}}</option>
+        </select>
+
+        <div *ngIf="genre.invalid && (genre.touched || genre.dirty)">
+            <div *ngIf="genre.errors.required" class="alert alert-danger">
+                Un genre est nécessaire.
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
         <label for="duration">Durée</label>
         <input class="form-control" type="number" name="duration" min="0"
         #duration = "ngModel"
