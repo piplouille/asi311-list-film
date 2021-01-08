@@ -9,24 +9,22 @@ import { GenreService } from '../services/genre.service';
   templateUrl: './film.component.html',
   styleUrls: ['./film.component.css']
 })
-export class FilmComponent implements OnInit, OnChanges {
+export class FilmComponent implements OnInit {
   @Input() film:Film;
   genre:Genre;
 
   constructor(private filmService:FilmService, private genreService:GenreService) {
   }
 
-  ngOnChanges(changes:SimpleChanges) {
-    if (changes['film']) {
-      let filmChange = changes['film'];
-      this.genreService.getGenreById(filmChange.currentValue.genre)
+  ngOnInit(): void {
+    this.getGenre();
+  }
+
+  getGenre() {
+    this.genreService.getGenreById(this.film.genre)
       .subscribe((genre:Genre) => {
         this.genre = genre;
       })
-    }
-  }
-
-  ngOnInit(): void {
   }
 
   deleteFilm() {

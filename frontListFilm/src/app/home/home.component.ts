@@ -14,14 +14,14 @@ export class HomeComponent implements OnInit {
   film: Film;
   total: number;
   film_id: number;
-  genre: Genre;
+  genre: String;
 
   constructor(private filmService: FilmService, private genreService:GenreService) { }
   
   ngOnInit(): void {
     this.getFilms();
   }
-
+  
   getFilms() {
     this.filmService.getFilms().subscribe( (films: Film[]) => {
       this.films = films;
@@ -35,7 +35,15 @@ export class HomeComponent implements OnInit {
     this.filmService.getFilmById(this.film_id)
         .subscribe((film:Film) => {
           this.film = film;
+          this.getGenre();
         })
+  }
+
+  getGenre() {
+    this.genreService.getGenreById(this.film.genre)
+      .subscribe((genre:Genre) => {
+        this.genre = genre.genre;
+      })
   }
 
   randomNumber(min, max) {

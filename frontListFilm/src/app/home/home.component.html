@@ -1,3 +1,9 @@
-<h1 style="display-3">Ma liste de films</h1>
+<!-- <app-film [film]="film"></app-film> -->
+<h1 class="display-3">Ma liste de films</h1>
 <h2>Suggestion de film</h2>
-<app-film [film]="film"></app-film>
+<div class="container">
+    <img class="img-fluid img-thumbnail" src="https://picsum.photos/seed/{{film.titre}}/400/600">
+    <div class="centered">
+        <a class="btn btn-sl btn-secondary" [routerLink]="['/films/'+film.id]">{{film.titre}}</a>
+    </div>
+</div>

@@ -2,11 +2,12 @@ import { ResourceLoader } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Film } from '../models/film';
 import { FilmService } from '../services/film.service';
+import { FilmComponent } from '../film/film.component';
 
 @Component({
   selector: 'app-films',
   templateUrl: './films.component.html',
-  styleUrls: ['./films.component.css']
+  styleUrls: ['./films.component.css'],
 })
 export class FilmsComponent implements OnInit {
   films: Film[];
