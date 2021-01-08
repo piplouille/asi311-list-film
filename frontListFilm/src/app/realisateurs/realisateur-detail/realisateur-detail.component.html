@@ -1,4 +1,8 @@
 <h1 class="display-3">{{realisateur.prenom}} {{realisateur.nom}}</h1>
+<div>
+    <a class="btn btn-sm btn-outline-secondary" [routerLink]="['/realisateurs/update/'+realisateur.id]">Modifier</a>
+    <a style="margin-left:10px;" class="btn btn-sm btn-outline-danger" (click)="deleteRealisateur()">Supprimer</a>
+</div>
 <div *ngFor="let film of films">
     <app-film [film]="film"></app-film>
 </div>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Film } from '../../models/film';
 import { FilmService } from '../../services/film.service';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RealisateurService } from 'src/app/services/realisateur.service';
 import { Realisateur } from 'src/app/models/realisateur';
 
@@ -17,7 +17,7 @@ export class RealisateurDetailComponent implements OnInit {
   films: Film[];
   routeSub: Subscription;
 
-  constructor(private filmService:FilmService, private realisateurService:RealisateurService, private activatedRoute:ActivatedRoute) { }
+  constructor(private filmService:FilmService, private realisateurService:RealisateurService, private activatedRoute:ActivatedRoute, private router:Router) { }
 
   ngOnInit(): void {
     this.routeSub = this.activatedRoute
@@ -35,6 +35,11 @@ export class RealisateurDetailComponent implements OnInit {
       .subscribe((realisateur:Realisateur) => {
         this.realisateur = realisateur;
       })
+  }
+
+  deleteRealisateur() {
+    this.realisateurService.deleteRealisateur(this.realisateur.id);
+    this.router.navigate(['/realisateurs']);
   }
 
 }
