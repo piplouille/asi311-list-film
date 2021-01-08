@@ -6,6 +6,7 @@
 </div>
 <div style="float:right">
     <div style="text-align: center;" class="col-sm">
-        <a style="float:right" class="btn btn-sm btn-outline-danger" (click)="deleteFilm()">Supprimer</a>
+        <a class="btn btn-sm btn-outline-secondary" [routerLink]="['/films/update/'+film.id]">Modifier</a>
+        <a style="float:right; margin-left:10px;" class="btn btn-sm btn-outline-danger" (click)="deleteFilm()">Supprimer</a>
     </div>
 </div>
