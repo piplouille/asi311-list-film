@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
     this.filmService.getFilms().subscribe( (films: Film[]) => {
       this.films = films;
       this.total = this.films.length;
-      this.film_id = Math.floor(this.randomNumber(1, this.total));
+      this.film_id = films[Math.floor(this.randomNumber(1, this.total))].id;
       this.getFilmById();
     })
   }
