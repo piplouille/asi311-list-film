@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Film } from 'src/app/models/film';
 import { Genre } from 'src/app/models/genre';
@@ -17,7 +17,7 @@ export class FilmDetailComponent implements OnInit {
   genre: Genre;
   routeSub: Subscription;
 
-  constructor(private filmService: FilmService, private genreService: GenreService, private activatedRoute: ActivatedRoute) { }
+  constructor(private filmService: FilmService, private genreService: GenreService, private activatedRoute: ActivatedRoute, private router:Router) { }
 
   ngOnInit(): void {
     this.routeSub = this.activatedRoute
@@ -37,6 +37,11 @@ export class FilmDetailComponent implements OnInit {
       .subscribe((genre:Genre) => {
         this.genre = genre;
       })
+  }
+
+  deleteFilm() {
+    this.filmService.deleteFilm(this.film.id);
+    this.router.navigate(['/films']);
   }
 
 }

@@ -1,4 +1,11 @@
 <h1 class="display-3">{{ film.titre }}</h1>
-<h2>Réalisateur : <a [routerLink]="['/realisateurs/'+film.realisateur]">{{film.nomRealisateur}}</a></h2>
-<p>Genre : {{genre.genre}}<br>Durée : {{ film.duration }}</p>
-<img style="float:left" src="https://picsum.photos/seed/{{film.titre}}/300/400">
+<div style="float:left;">
+    <h2>Réalisateur : <a [routerLink]="['/realisateurs/'+film.realisateur]">{{film.nomRealisateur}}</a></h2>
+    <p>Genre : {{genre.genre}}<br>Durée : {{ film.duration }}</p>
+    <img src="https://picsum.photos/seed/{{film.titre}}/300/400">
+</div>
+<div style="float:right">
+    <div style="text-align: center;" class="col-sm">
+        <a style="float:right" class="btn btn-sm btn-outline-danger" (click)="deleteFilm()">Supprimer</a>
+    </div>
+</div>
