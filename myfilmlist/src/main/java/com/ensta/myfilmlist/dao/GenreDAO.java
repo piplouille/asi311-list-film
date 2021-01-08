@@ -51,7 +51,7 @@ public class GenreDAO {
 			statement.setLong(1, id);
 			ResultSet resultSet = statement.executeQuery();
 			resultSet.next();
-			result = new GenrePojo(id, resultSet.getString(1));
+			result = new GenrePojo(id, resultSet.getString(2));
 			return result;
 		} catch (SQLException e) {
 			throw new DaoException("Erreur lors du SELECT by ID : " + e.getMessage());
